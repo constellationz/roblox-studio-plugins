@@ -1,5 +1,7 @@
 -- Information for this plugin's screen gui
 
+local GUI_PARENT = game:GetService("StarterGui")
+
 local plugin_info = require(script.Parent.plugin_info)
 
 -- Load the module
@@ -9,7 +11,7 @@ local function load(plugin)
 	local gui = {}
 
 	-- Remove old gui
-	for _, child in game:GetService("CoreGui"):GetChildren() do
+	for _, child in GUI_PARENT:GetChildren() do
 		if child.Name == plugin_info.id then
 			child:Destroy()
 		end
@@ -20,10 +22,31 @@ local function load(plugin)
 	gui.instance.Archivable = false
 	gui.instance.Name = plugin_info.id
 	gui.instance.Enabled = false
-	gui.instance.Parent = game:GetService("CoreGui")
+	gui.instance.Parent = GUI_PARENT
 
+	-- Is the gui enabled?
+	---@return boolean is_enabled
+	function gui.enabled()
+		return gui.instance.Enabled
+	end
+
+	-- Enable the gui
+	function gui.enable()
+		gui.instance.Enabled = true
+	end
+
+	-- Disable the gui
+	function gui.disable()
+		gui.instance.Enabled = false
+	end
+
+	-- Toggle the plugin gui.
 	function gui.toggle()
-		gui.instance.Enabled = not gui.instance.Enabled
+		if gui.enabled() then
+			gui.disable()
+		else
+			gui.enable()
+		end
 	end
 
 	return gui

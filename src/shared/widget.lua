@@ -12,9 +12,29 @@ local function load(plugin)
 	widget.instance = plugin:CreateDockWidgetPluginGui(plugin_info.id, plugin_info.widget_info)
 	widget.instance.Title = plugin_info.name
 
+	-- Is the widget enabled?
+	---@return boolean is_enabled
+	function widget.enabled()
+		return widget.instance.Enabled
+	end
+
+	-- Enable the widget
+	function widget.enable()
+		widget.instance.Enabled = true
+	end
+
+	-- Disable the widget
+	function widget.disable()
+		widget.instance.Enabled = false
+	end
+
 	-- Toggle the plugin widget.
 	function widget.toggle()
-		widget.instance.Enabled = not widget.instance.Enabled
+		if widget.enabled() then
+			widget.disable()
+		else
+			widget.enable()
+		end
 	end
 
 	return widget

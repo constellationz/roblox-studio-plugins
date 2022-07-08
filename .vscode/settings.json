@@ -2,6 +2,12 @@
 	"Lua.diagnostics.globals": [
 		"script",
 		"Instance",
-		"UDim2"
+		"UDim2",
+		"plugin",
+		"game",
+		"DockWidgetPluginGuiInfo",
+		"Enum",
+		"Color3",
+		"Vector2"
 	]
 }

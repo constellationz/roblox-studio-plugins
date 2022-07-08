@@ -1,0 +1,7 @@
+{
+	"name": "modules",
+	"tree": {
+		"$className": "Folder",
+		"$path": "../../shared"
+	}
+}
